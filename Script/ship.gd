@@ -62,7 +62,6 @@ func set_shield(value):
 func _on_gun_cooldown_timeout():
 	can_shoot = true
 
-
 func _on_area_entered(area):
 	if area.is_in_group("enemies"):
 		area.explode()

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Galactic Strikezone"
-run/main_scene="res://Scene/main.tscn"
+run/main_scene="res://Scene/main-menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Asset/Icon/GameIcon.png"
 

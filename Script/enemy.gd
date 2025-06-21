@@ -10,7 +10,6 @@ var follow_anchor = false
 
 @onready var screensize  = get_viewport_rect().size
 
-
 func start(pos):
 	follow_anchor = false
 	speed = 0

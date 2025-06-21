@@ -48,6 +48,7 @@ func shoot():
 	var b = bullet_scene.instantiate()
 	get_tree().root.add_child(b)
 	b.start(position + Vector2(0, -8))
+	$Shoot.play()
 	var tween = create_tween().set_parallel(false)
 	tween.tween_property($Ship, "position:y", 1, 0.1)
 	tween.tween_property($Ship, "position:y", 0, 0.05)
@@ -61,7 +62,6 @@ func set_shield(value):
 		
 func _on_gun_cooldown_timeout():
 	can_shoot = true
-
 
 func _on_area_entered(area):
 	if area.is_in_group("enemies"):

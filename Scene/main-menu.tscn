@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://b5bdqoy5ympys"]
+
+[ext_resource type="FontFile" uid="uid://b6t16snf1jyp2" path="res://Asset/Font/AMORIA.otf" id="1_25lgd"]
+[ext_resource type="Script" path="res://Script/main_menu.gd" id="1_q2nbb"]
+[ext_resource type="Texture2D" uid="uid://wuj23d8kgi68" path="res://Asset/Background/BgMenu.png" id="1_q7mfl"]
+[ext_resource type="AudioStream" uid="uid://ba8tvbchvsfpw" path="res://Asset/Sound/click.mp3" id="2_4bs8w"]
+[ext_resource type="AudioStream" uid="uid://b4sqa6bcyb57i" path="res://Asset/Sound/bg-music.mp3" id="2_314ui"]
+[ext_resource type="AudioStream" uid="uid://ba8eik8jlp0ml" path="res://Asset/Sound/hover.mp3" id="5_pw1fd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v2iue"]
+texture = ExtResource("1_q7mfl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtrpp"]
+bg_color = Color(0.541176, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra0ap"]
+bg_color = Color(0.541176, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmc65"]
+bg_color = Color(0.541176, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvcxc"]
+bg_color = Color(0.541176, 0, 0, 1)
+
+[node name="Main-menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q2nbb")
+
+[node name="Panel" type="Panel" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_v2iue")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.5
+offset_top = 105.0
+offset_right = 100.5
+offset_bottom = 176.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_25lgd")
+theme_override_font_sizes/font_size = 20
+text = "GALACTIC
+STRIKEZONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = 17.0
+offset_right = 47.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_25lgd")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxFlat_wtrpp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ra0ap")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nmc65")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vvcxc")
+text = "PLAY"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_25lgd")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxFlat_wtrpp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ra0ap")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nmc65")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vvcxc")
+text = "EXIT"
+
+[node name="BgMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(73, 196)
+stream = ExtResource("2_314ui")
+parameters/looping = true
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(219, 588)
+stream = ExtResource("2_4bs8w")
+parameters/looping = false
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(146, 392)
+stream = ExtResource("5_pw1fd")
+parameters/looping = false
+
+[connection signal="mouse_entered" from="VBoxContainer/Play" to="." method="_on_start_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Exit" to="." method="_on_exit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

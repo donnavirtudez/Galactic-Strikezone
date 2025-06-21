@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8exv6qda8frv"]
+[gd_scene load_steps=14 format=3 uid="uid://b8exv6qda8frv"]
 
 [ext_resource type="Script" path="res://Script/main.gd" id="1_vtt5l"]
 [ext_resource type="PackedScene" uid="uid://b32476hejmrnj" path="res://Scene/player.tscn" id="2_tiq3a"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://ch38owyw1jg3n" path="res://Asset/UserInterface/Start.png" id="4_mw31j"]
 [ext_resource type="Texture2D" uid="uid://cepkwlbt5xdst" path="res://Asset/Background/Background.png" id="5_p1jx8"]
 [ext_resource type="Script" path="res://Script/Camera2D.gd" id="7_qw2vk"]
+[ext_resource type="AudioStream" uid="uid://di615ycs7lgkf" path="res://Asset/Sound/bg-music-2.mp3" id="8_ev0p4"]
+[ext_resource type="AudioStream" uid="uid://brojetab8dyod" path="res://Asset/Sound/death.mp3" id="9_tgowh"]
 
 [sub_resource type="Animation" id="Animation_frim2"]
 length = 0.001
@@ -101,6 +103,18 @@ noise = SubResource("FastNoiseLite_uf0tv")
 
 [node name="EnemyAnchor" type="Node2D" parent="."]
 texture_filter = 1
+
+[node name="BGMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(120, 160)
+scale = Vector2(1.1, 1.1)
+stream = ExtResource("8_ev0p4")
+parameters/looping = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(252, 336)
+scale = Vector2(1.21, 1.21)
+stream = ExtResource("9_tgowh")
+parameters/looping = false
 
 [connection signal="pressed" from="CanvasLayer/CenterContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]

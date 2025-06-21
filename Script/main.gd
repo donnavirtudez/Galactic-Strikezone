@@ -4,6 +4,8 @@ var enemy = preload("res://Scene/enemy.tscn")
 var score = 0
 var playing = false
 
+@onready var bg_music = $BGMusic
+@onready var death_sound = $DeathSound
 @onready var start_button = $CanvasLayer/CenterContainer/Start
 @onready var game_over = $CanvasLayer/CenterContainer/GameOver
 
@@ -16,7 +18,6 @@ func _ready():
 	var tween2 = create_tween().set_loops().set_parallel(false).set_trans(Tween.TRANS_BACK)
 	tween2.tween_property($EnemyAnchor, "position:y", $EnemyAnchor.position.y + 3, 1.5).set_ease(Tween.EASE_IN_OUT)
 	tween2.tween_property($EnemyAnchor, "position:y", $EnemyAnchor.position.y - 3, 1.5).set_ease(Tween.EASE_IN_OUT)
-#	spawn_enemies()	
 	
 func spawn_enemies():
 	for x in range(9):
@@ -38,10 +39,11 @@ func _process(_delta):
 		spawn_enemies()
 	
 func _on_player_died():
-#	print("game over")
 	playing = false
 	get_tree().call_group("enemies", "queue_free")
 	game_over.show()
+	bg_music.stop()  
+	death_sound.play()
 	await get_tree().create_timer(2).timeout
 	game_over.hide()
 	start_button.show()
@@ -55,4 +57,5 @@ func new_game():
 
 func _on_start_pressed():
 	start_button.hide()
+	bg_music.play()
 	new_game()
